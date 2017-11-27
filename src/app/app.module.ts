@@ -4,15 +4,30 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { RouterModule, Routes } from '@angular/router';
+import {ProductService} from './shared/product.service';
+import {ProductComponent} from './product/product.component';
+
+
+const appRoutes: Routes = [
+  { path: 'product',
+    component: ProductComponent },
+  { path: '',
+    redirectTo: '/product',
+    pathMatch: 'full'
+    }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProductComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
