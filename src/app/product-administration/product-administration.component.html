@@ -1,0 +1,27 @@
+<div>
+  <form (ngSubmit)="createCustomer()" [formGroup]="productGroup" novalidate >
+  <div class="container" align="left">
+    <label class="center-block col-md-6">Product:
+      <input class="form-control col-md-6" formControlName="name">
+    </label>
+
+    <label class="center-block col-md-6">Type:
+      <input class="form-control col-md-6" formControlName="type">
+    </label>
+    <button type="submit"
+      class="row">
+      Create
+    </button>
+  </div>
+  <a
+    *ngFor="let product of products" class="list-group-item list-group-item-action">
+    <h5>Product: {{product.name}} <h5> Type: {{product.type}}</h5> </h5>
+    <button class="btn btn-outline-danger" (click)="deleteProductById(product.id, $event)">
+      <i class="fa fa-bomb" aria-hidden="true"></i> Delete
+    </button>
+
+  </a>
+  </form>
+ 
+
+</div>
