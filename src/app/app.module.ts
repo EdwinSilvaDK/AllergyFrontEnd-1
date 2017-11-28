@@ -16,8 +16,13 @@ const appRoutes: Routes = [
     component: AllergyComponent },
   { path: '',
     redirectTo: '/allergy',
-    pathMatch: 'full'
-    }
+    pathMatch: 'full'},
+  { path: 'allergy/:id',
+    component: ProductListComponent,
+    data: { title: 'Product List'}},
+  { path: 'allergy/productList',
+    component: ProductListComponent
+  }
 ];
 
 @NgModule({
