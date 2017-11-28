@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 
-const url = environment.apiEndpoint + '/allergy';
+const url = environment.apiEndpoint + '/product';
 
 
 @Injectable()

@@ -10,11 +10,12 @@ import {Router} from '@angular/router';
 export class AllergyComponent implements OnInit {
 
   constructor(private productService: ProductService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
   }
   productsById() {
-    this.router.navigateByUrl('/allergy');
+      this.router.navigateByUrl('product-list');
   }
 }

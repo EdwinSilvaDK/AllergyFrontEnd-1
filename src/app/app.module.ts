@@ -8,7 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {ProductService} from './shared/product.service';
 import {AllergyComponent} from './allergy/allergy.component';
 import {HttpClientModule} from '@angular/common/http';
-import { ProductListComponent } from './product-list/product-list.component';
+import {ProductListComponent } from './product-list/product-list.component';
 
 
 const appRoutes: Routes = [
@@ -17,11 +17,9 @@ const appRoutes: Routes = [
   { path: '',
     redirectTo: '/allergy',
     pathMatch: 'full'},
-  { path: 'allergy/:id',
+  { path: 'product-list',
     component: ProductListComponent,
-    data: { title: 'Product List'}},
-  { path: 'allergy/productList',
-    component: ProductListComponent
+    data: { title: 'Product List' }
   }
 ];
 
@@ -33,7 +31,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {enableTracing: true}),
     HttpClientModule
   ],
   providers: [ProductService],
