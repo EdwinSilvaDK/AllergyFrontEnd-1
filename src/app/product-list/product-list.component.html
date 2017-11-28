@@ -1,12 +1,14 @@
+<h5 align="right"> <button (click)="backToAllergies()" class="list-group-item-warning"> Back </button> </h5>
+
 <h1 align = 'center'  >
   List of products without Gluten
 </h1>
+
+
 <div>
   <a
   *ngFor="let product of products" class="list-group-item list-group-item-action">
-    <h5>Product: {{product.name}}
-       <h5>
-         Type: {{product.type}}</h5> </h5>
+    <h5>Product: {{product.name}} <h5> Type: {{product.type}}</h5> </h5>
 
   </a>
 </div>

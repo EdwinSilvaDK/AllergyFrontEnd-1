@@ -21,5 +21,8 @@ export class ProductListComponent implements OnInit {
         }
       );
   }
+  backToAllergies() {
+    this.router.navigateByUrl('/allergy');
+  }
 
 }
