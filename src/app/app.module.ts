@@ -6,14 +6,16 @@ import { AppComponent } from './app.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import {ProductService} from './shared/product.service';
-import {ProductComponent} from './product/product.component';
+import {AllergyComponent} from './allergy/allergy.component';
+import {HttpClientModule} from '@angular/common/http';
+import { ProductListComponent } from './product-list/product-list.component';
 
 
 const appRoutes: Routes = [
-  { path: 'product',
-    component: ProductComponent },
+  { path: 'allergy',
+    component: AllergyComponent },
   { path: '',
-    redirectTo: '/product',
+    redirectTo: '/allergy',
     pathMatch: 'full'
     }
 ];
@@ -21,11 +23,13 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent
+    AllergyComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
