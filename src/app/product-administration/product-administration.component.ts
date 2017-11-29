@@ -14,6 +14,7 @@ import {FormGroup, FormBuilder} from '@angular/forms';
 })
 export class ProductAdministrationComponent implements OnInit {
   productGroup: FormGroup;
+  productToDelete: Product;
   product: Product;
   products: Product[];
   constructor(private productService: ProductService,
@@ -25,6 +26,7 @@ export class ProductAdministrationComponent implements OnInit {
     });
   }
 
+
   ngOnInit() {
     this.productService.getProducts()
       .subscribe(
@@ -33,16 +35,19 @@ export class ProductAdministrationComponent implements OnInit {
         }
       );
   }
-  deleteProductById(id: number, $event) {
-    console.log('delete Clicked');
-    this.productService.deleteProductById(id)
+
+  delete(product: Product, $event) {
+    console.log('product', product);
+    this.productService.deleteProductById(
+      product.id).switchMap(productDeleted => this.productService.getProducts())
       .subscribe(
-      product => {
-        this.product = product;
-      }
-    );
+        products => {
+          this.products = products;
+        }, error2 => {}
+      );
     $event.stopPropagation();
   }
+
   createCustomer() {
 
     const values = this.productGroup.value;
@@ -51,7 +56,8 @@ export class ProductAdministrationComponent implements OnInit {
       type: values.type,
     };
     this.productService.createProduct(product)
-      .subscribe(products => {
+      .subscribe(returnproduct => {
+        this.products.push(returnproduct);
         this.productGroup.reset();
       });
   }
