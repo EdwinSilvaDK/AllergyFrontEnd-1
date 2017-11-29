@@ -36,10 +36,10 @@ export class ProductAdministrationComponent implements OnInit {
       );
   }
 
-  delete(product: Product, $event) {
-    console.log('product', product);
+  delete(id: number, $event) {
+    console.log('product');
     this.productService.deleteProductById(
-      product.id).switchMap(productDeleted => this.productService.getProducts())
+      id).switchMap(productDeleted => this.productService.getProducts())
       .subscribe(
         products => {
           this.products = products;

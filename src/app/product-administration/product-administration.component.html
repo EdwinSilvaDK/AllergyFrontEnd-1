@@ -13,18 +13,12 @@
       Create
     </button>
   </div>
+  </form>
   <a
     *ngFor="let product of products" class="list-group-item list-group-item-action">
     <h5>Product: {{product.name}} <h5> Type: {{product.type}} </h5> </h5>
-
-
-
-      <button class="btn btn-outline-danger" (click)="delete(product.id, $event)">
+      <button type="button" class="btn btn-outline-danger" (click)="delete(product.id, $event)">
         <i class="fa fa-bomb" aria-hidden="true"></i>
       </button>
-
   </a>
-  </form>
-
-
 </div>
