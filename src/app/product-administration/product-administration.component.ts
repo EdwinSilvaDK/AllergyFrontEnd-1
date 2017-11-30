@@ -61,5 +61,8 @@ export class ProductAdministrationComponent implements OnInit {
         this.productGroup.reset();
       });
   }
+  backToLogin() {
+    this.router.navigateByUrl('/login');
+  }
 
 }

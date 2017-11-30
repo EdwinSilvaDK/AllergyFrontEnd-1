@@ -18,4 +18,7 @@ export class AllergyComponent implements OnInit {
   productsById() {
       this.router.navigateByUrl('product-list');
   }
+  backToLogin() {
+    this.router.navigateByUrl('/login');
+  }
 }

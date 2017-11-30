@@ -1,5 +1,13 @@
+<hr>
 <div>
+  <div class="col-md-12" align="right"> <div class="list-group" align="left"> <div align="center"> <button (click)="backToLogin()" class="btn btn-outline-success">
+    <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+  </button>
+  </div>
+   </div>
+    </div>
   <form (ngSubmit)="createCustomer()" [formGroup]="productGroup" novalidate >
+    <hr>
   <div class="container" align="left">
     <label class="center-block col-md-6">Product:
       <input class="form-control col-md-6" formControlName="name">
@@ -9,17 +17,20 @@
       <input class="form-control col-md-6" formControlName="type">
     </label>
     <button type="submit"
-      class="row">
+      class="row list-group-item list-group-item-success">
+      <i class="fa fa-plus" aria-hidden="true"></i>
       Create
     </button>
   </div>
   </form>
+  <hr>
   <a
-    *ngFor="let product of products" class="list-group-item list-group-item-action">
+    *ngFor="let product of products" class="row list-group-item list-group-item-action">
     <h5>Product: {{product.name}} <h5> Type: {{product.type}} </h5> </h5>
     <div align="right">
-      <button type="button" class="btn btn-outline-danger" (click)="delete(product.id, $event)">
-        <i class="fa fa-bomb" aria-hidden="true"></i> Delete
+      <button type="button" class="btn btn-danger" (click)="delete(product.id, $event)">
+        <i class="fa fa-eraser" aria-hidden="true"></i>
+        Delete
       </button>
     </div>
   </a>

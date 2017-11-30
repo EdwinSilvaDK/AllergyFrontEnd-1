@@ -8,3 +8,7 @@
 .row {
   margin-left: 16px;
 }
+.row:hover {
+  color: crimson;
+}
+
