@@ -16,7 +16,10 @@
 <a
   *ngFor="let product of products" class="col-lg-4 list-group-item" >
   <h5>Product: {{product.name}} <h5> Type: {{product.type}}</h5> </h5>
+  <h5 *ngFor="let ingredient of product?.ingredients"> List of ingredients: {{ingredient.name}} </h5>
+
 </a>
 
-
 </div>
+
+
