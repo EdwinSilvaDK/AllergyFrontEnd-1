@@ -35,7 +35,6 @@ export class ProductAdministrationComponent implements OnInit {
         }
       );
   }
-
   delete(id: number, $event) {
     console.log('product');
     this.productService.deleteProductById(
@@ -48,7 +47,7 @@ export class ProductAdministrationComponent implements OnInit {
     $event.stopPropagation();
   }
 
-  createCustomer() {
+  addProduct() {
 
     const values = this.productGroup.value;
     const product: Product = {
@@ -61,6 +60,23 @@ export class ProductAdministrationComponent implements OnInit {
         this.productGroup.reset();
       });
   }
+  editSpecificProduct(id: number) {
+    const values2 = this.productGroup.value;
+    const product: Product = {
+      name: values2.name,
+      type: values2.type,
+      id: id,
+    };
+    this.productService.editProduct(id, product)
+      .switchMap(productDeleted => this.productService.getProducts())
+      .subscribe(
+        products => {
+          this.products = products;
+          this.productGroup.reset();
+        }, error2 => {}
+      );
+  }
+
   backToLogin() {
     this.router.navigateByUrl('/login');
   }
