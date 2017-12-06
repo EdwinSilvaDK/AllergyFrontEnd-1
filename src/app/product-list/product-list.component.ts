@@ -12,7 +12,9 @@ export class ProductListComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private router: Router) { }
+  product: Product;
   products: Product[];
+
   ngOnInit() {
     this.productService.getProducts()
       .subscribe(
@@ -24,5 +26,7 @@ export class ProductListComponent implements OnInit {
   backToAllergies() {
     this.router.navigateByUrl('/allergy');
   }
-
+  addProduct(name: string) {
+     return this.productService.addToShoppingList(name);
+  }
 }

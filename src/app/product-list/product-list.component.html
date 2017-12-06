@@ -16,6 +16,7 @@
 <a
   *ngFor="let product of products" class="col-lg-4 list-group-item" >
   <h5>Product: {{product.name}} <h5> Type: {{product.type}}</h5> </h5>
+  <button type="button" class="btn-success btn-lg" (click)="addProduct(product.name)">Add to Shopping List</button>
   <hr>
   <h4 > List of ingredients: </h4>
   <h5 *ngFor="let ingredient of product?.ingredients"> {{ingredient.name}} </h5>

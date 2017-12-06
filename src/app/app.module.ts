@@ -13,6 +13,7 @@ import {ProductListComponent } from './product-list/product-list.component';
 import { LoginComponent } from './login/login.component';
 import { ProductAdministrationComponent } from './product-administration/product-administration.component';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ShoppingListComponent} from './shopping-list/shopping-list.component';
 
 
 const appRoutes: Routes = [
@@ -30,6 +31,9 @@ const appRoutes: Routes = [
   { path: 'product-list',
     component: ProductListComponent,
     data: { title: 'Product List' }
+  },
+  { path: 'shopping-list',
+    component: ShoppingListComponent,
   }
 ];
 
@@ -38,6 +42,7 @@ const appRoutes: Routes = [
     AppComponent,
     AllergyComponent,
     ProductListComponent,
+    ShoppingListComponent,
     LoginComponent,
     ProductAdministrationComponent
   ],

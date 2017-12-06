@@ -12,6 +12,7 @@ const url = environment.apiEndpoint + '/product';
 @Injectable()
 export class ProductService {
   constructor(private http: HttpClient) {}
+  ShoppingList: Array<string> = [];
   getProducts(): Observable<Product[]> {
     return this.http
       .get<Product[]>(url);
@@ -31,6 +32,14 @@ export class ProductService {
   }
   editProduct(id: number , product: Product): Observable<Product> {
     return this.http
-      .put<Product>(url + '/' + id, product);
+     .put<Product>(url + '/' + id, product);
   }
+  addToShoppingList(name: string) {
+    this.ShoppingList.push(name);
+    console.log(this.ShoppingList);
+}
+  getShoppingList() {
+    console.log(this.ShoppingList);
+    return this.ShoppingList;
+}
 }
