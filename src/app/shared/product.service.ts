@@ -37,9 +37,9 @@ export class ProductService {
   addToShoppingList(name: string) {
     this.ShoppingList.push(name);
     console.log(this.ShoppingList);
+    localStorage.setItem('shoppingList', JSON.stringify(this.ShoppingList));
 }
-  getShoppingList() {
-    console.log(this.ShoppingList);
-    return this.ShoppingList;
+  getShoppingList(): string[] {
+    return JSON.parse(localStorage.getItem('shoppingList'));
 }
 }

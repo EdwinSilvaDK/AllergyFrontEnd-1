@@ -25,7 +25,7 @@ export class ShoppingListComponent implements OnInit {
   productGroup: FormGroup;
 
   ngOnInit() {
-    return this.productService.ShoppingList;
+    console.log(this.productService.getShoppingList());
   }
 
   deleteProduct(id: number, $event) {
