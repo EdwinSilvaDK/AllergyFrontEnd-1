@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 
 import { RouterModule, Routes } from '@angular/router';
@@ -15,6 +14,7 @@ import { ProductAdministrationComponent } from './product-administration/product
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ShoppingListComponent} from './shopping-list/shopping-list.component';
 import {IngredientService} from './ingredient/shared/ingredient.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 const appRoutes: Routes = [
@@ -53,6 +53,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NgbModule.forRoot()
   ],
   providers: [ProductService, IngredientService, FormBuilder],
   bootstrap: [AppComponent]

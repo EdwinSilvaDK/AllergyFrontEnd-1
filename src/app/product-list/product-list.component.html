@@ -23,9 +23,24 @@
   <h5>Product: {{product.name}} <h5> Type: {{product.type}}</h5> </h5>
   <button type="button" class="btn-success btn-lg" (click)="addProduct(product.name)">Add to Shopping List</button>
   <hr>
-  <h4 > List of ingredients: </h4>
-  <h5 *ngFor="let ingredient of product?.ingredients"> {{ingredient.name}} </h5>
+  <h4 > List of ingredients:  </h4>
+  <a *ngFor="let Ids of product.ingredientIds" >
 
+
+
+
+  <ng-container *ngFor="let ingredientObject of ingredientList">
+    <a *ngIf="ingredientObject.id == Ids">
+      <h5>
+        {{ingredientObject.name}}
+      </h5>
+    </a>
+
+  </ng-container>
+  </a>
+  <h1>
+
+  </h1>
 </a>
 
 </div>

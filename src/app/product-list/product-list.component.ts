@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../shared/product.service';
 import {Router} from '@angular/router';
 import {Product} from '../shared/product.model';
+import {Ingredient} from '../ingredient/shared/ingredient.model';
+import {IngredientService} from '../ingredient/shared/ingredient.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,10 +13,11 @@ import {Product} from '../shared/product.model';
 export class ProductListComponent implements OnInit {
 
   constructor(private productService: ProductService,
+              private ingredientService: IngredientService,
               private router: Router) { }
   product: Product;
   products: Product[];
-
+  ingredientList: Ingredient[];
   ngOnInit() {
     this.productService.getProducts()
       .subscribe(
@@ -22,6 +25,11 @@ export class ProductListComponent implements OnInit {
           this.products = products;
         }
       );
+    this.ingredientService.getIngredients()
+      .subscribe(
+        ingredients => {
+          this.ingredientList = ingredients;
+        });
   }
   backToAllergies() {
     this.router.navigateByUrl('/allergy');

@@ -11,4 +11,10 @@
 .row:hover {
   color: crimson;
 }
+.show > .dropdown-menu {
+  display: block;
+  overflow: auto;
+  max-height:250px;
+  max-width: 1000px;
+}
 

@@ -20,6 +20,7 @@ export class ProductAdministrationComponent implements OnInit {
   product: Product;
   products: Product[];
   ingredients: Ingredient[];
+  ingredientIdList: Array<number> = [];
   constructor(private productService: ProductService,
               private ingredientService: IngredientService,
               private router: Router,
@@ -91,7 +92,7 @@ export class ProductAdministrationComponent implements OnInit {
       id: id,
     };
     this.productService.editProduct(id, product)
-      .switchMap(productDeleted => this.productService.getProducts())
+      .switchMap(productEdited => this.productService.getProducts())
       .subscribe(
         products => {
           this.products = products;
@@ -100,6 +101,20 @@ export class ProductAdministrationComponent implements OnInit {
       );
   }
 
+  addIngredientToProduct(name: string, type: string, id: number, idIng: number) {
+    this.ingredientIdList.push(idIng);
+    const product: Product = {
+      name: name,
+      type: type,
+      ingredientIds: this.ingredientIdList,
+      id: id,
+    };
+    this.productService.editProduct(id, product)
+      .switchMap(IngredientEdited => this.productService.getProducts())
+      .subscribe(products => {
+        this.products = products;
+      });
+  }
   backToLogin() {
     this.router.navigateByUrl('/login');
   }
