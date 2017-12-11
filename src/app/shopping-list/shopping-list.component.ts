@@ -20,14 +20,19 @@ export class ShoppingListComponent implements OnInit {
     });
   }
 
-  afterAddingList: Product[];
+  shoppingList: Array<string> = [];
   product: Product;
   productGroup: FormGroup;
 
   ngOnInit() {
-    console.log(this.productService.getShoppingList());
+    this.shoppingList = this.productService.getShoppingList();
   }
 
-  deleteProduct(id: number, $event) {
+  backToAllergies() {
+    this.router.navigateByUrl('/allergy');
+  }
+  clearProduct() {
+    this.productService.DeleteShoppingList();
+    this.shoppingList = this.productService.getShoppingList();
   }
   }

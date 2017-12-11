@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { ProductAdministrationComponent } from './product-administration/product-administration.component';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ShoppingListComponent} from './shopping-list/shopping-list.component';
+import {IngredientService} from './ingredient/shared/ingredient.service';
 
 
 const appRoutes: Routes = [
@@ -53,7 +54,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [ProductService, FormBuilder],
+  providers: [ProductService, IngredientService, FormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

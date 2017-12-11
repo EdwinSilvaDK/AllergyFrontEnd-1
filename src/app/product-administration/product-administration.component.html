@@ -1,6 +1,18 @@
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
 <hr>
 <div>
-  <div class="col-md-12" align="right"> <div class="list-group" align="left"> <div align="center"> <button (click)="backToLogin()" class="btn btn-outline-success">
+  <div class="col-md-12" align="right"> <div class="list-group" align="left"> <div align="center">
+    <button (click)="backToLogin()" class="btn btn-outline-success">
     <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
   </button>
   </div>
@@ -21,11 +33,19 @@
       <i class="fa fa-plus" aria-hidden="true"></i>
       Create
     </button>
-
   </div>
 </form>
+<div>
+  <form (ngSubmit)="addToIngredients()" [formGroup]="ingredientGroup" novalidate >
+    <label class="center-block col-md-6">Ingredient:
+      <input class="form-control col-md-6" formControlName="name">
+    </label>
+  <button type="submit">
+    Add Ingredient
+  </button>
+  </form>
+</div>
   <hr>
-
   <a
     *ngFor="let product of products" class="row list-group-item list-group-item-action">
     <form (ngSubmit)="editSpecificProduct(product.id)" [formGroup]="productGroup" novalidate >
@@ -45,7 +65,15 @@
         Delete
       </button>
       <button type="submit" class="row list-group-item list-group-item-info"> Edit </button>
+        <h5> Ingredients: </h5>
+        <a *ngFor="let ingredient of ingredients" class="row list-group-item list-group-item-action">
+          <h5>
+            {{ingredient.name}}
+          </h5>
+        </a>
+
       </div>
+
     </div>
     </form>
   </a>

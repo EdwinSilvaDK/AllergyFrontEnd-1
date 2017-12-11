@@ -1,6 +1,6 @@
 
 <div>
-  <div class="col-md-12" align="right"> <div class="list-group" align="left"> <div align="center"> <button (click)="backToSomewhere()" class="btn btn-outline-success">
+  <div class="col-md-12" align="right"> <div class="list-group" align="left"> <div align="center"> <button (click)="backToAllergies()" class="btn btn-outline-success">
     <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
   </button>
   </div>
@@ -9,16 +9,15 @@
   <hr>
   <h1 align="center"> Shopping List </h1>
   <a
-    *ngFor="let productName of ShoppingList" class="row list-group-item list-group-item-action">
+    *ngFor="let productName of shoppingList" class="row list-group-item list-group-item-action">
     <h5>Product: {{productName}}</h5>
-    <div align="right">
-      <button type="button" class="btn btn-danger" (click)="deleteProduct(product.id)">
-        <i class="fa fa-eraser" aria-hidden="true"></i>
-        Delete
-      </button>
-    </div>
+
 
   </a>
-
-
+  <div align="right">
+  <button type="button" class="btn btn-danger" (click)="(clearProduct())">
+    <i class="fa fa-eraser" aria-hidden="true"></i>
+    Clear
+  </button>
+  </div>
 </div>

@@ -3,6 +3,8 @@ import {ProductService} from '../shared/product.service';
 import {Product} from '../shared/product.model';
 import {Router} from '@angular/router';
 import {FormGroup, FormBuilder} from '@angular/forms';
+import {Ingredient} from '../ingredient/shared/ingredient.model';
+import {IngredientService} from '../ingredient/shared/ingredient.service';
 
 
 
@@ -14,15 +16,20 @@ import {FormGroup, FormBuilder} from '@angular/forms';
 })
 export class ProductAdministrationComponent implements OnInit {
   productGroup: FormGroup;
-  productToDelete: Product;
+  ingredientGroup: FormGroup;
   product: Product;
   products: Product[];
+  ingredients: Ingredient[];
   constructor(private productService: ProductService,
+              private ingredientService: IngredientService,
               private router: Router,
               private fb: FormBuilder) {
     this.productGroup = this.fb.group({
       name: [''],
       type: [''],
+    });
+    this.ingredientGroup = this.fb.group({
+      name: [''],
     });
   }
 
@@ -32,6 +39,12 @@ export class ProductAdministrationComponent implements OnInit {
       .subscribe(
         products => {
           this.products = products;
+        }
+      );
+    this.ingredientService.getIngredients()
+      .subscribe(
+        ingredients => {
+          this.ingredients = ingredients;
         }
       );
   }
@@ -48,7 +61,6 @@ export class ProductAdministrationComponent implements OnInit {
   }
 
   addProduct() {
-
     const values = this.productGroup.value;
     const product: Product = {
       name: values.name,
@@ -58,6 +70,17 @@ export class ProductAdministrationComponent implements OnInit {
       .subscribe(returnproduct => {
         this.products.push(returnproduct);
         this.productGroup.reset();
+      });
+  }
+  addToIngredients() {
+    const values = this.ingredientGroup.value;
+    const ingredient: Ingredient = {
+      name: values.name,
+    };
+    this.ingredientService.createIngredient(ingredient)
+      .subscribe(returnIngredient => {
+        this.ingredients.push(returnIngredient);
+        this.ingredientGroup.reset();
       });
   }
   editSpecificProduct(id: number) {

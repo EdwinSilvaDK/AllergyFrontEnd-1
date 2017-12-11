@@ -18,6 +18,11 @@ export class AllergyComponent implements OnInit {
   productsById() {
       this.router.navigateByUrl('product-list');
   }
+
+    toShoppingList() {
+    this.router.navigateByUrl('/shopping-list');
+  }
+
   backToLogin() {
     this.router.navigateByUrl('/login');
   }

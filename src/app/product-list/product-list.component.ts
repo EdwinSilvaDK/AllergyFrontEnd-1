@@ -26,6 +26,9 @@ export class ProductListComponent implements OnInit {
   backToAllergies() {
     this.router.navigateByUrl('/allergy');
   }
+  toShoppingList() {
+    this.router.navigateByUrl('/shopping-list');
+  }
   addProduct(name: string) {
      return this.productService.addToShoppingList(name);
   }
