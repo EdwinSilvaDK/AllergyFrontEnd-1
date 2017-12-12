@@ -58,12 +58,12 @@
           <div ngbDropdown placement="top-right" class="d-inline-block">
             <button type="button" class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>Ingredients to add</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-              <a *ngFor="let ingredient of ingredients" class="row list-group-item list-group-item-action">
+              <a *ngFor="let ingredient of ingredients">
                 <h5>
+                  <hr>
                   <button (click)="addIngredientToProduct(product.name, product.type, product.id, ingredient.id)" type="button" class="dropdown-item">{{ingredient.name}}</button>
                 </h5>
               </a>
-
             </div>
           </div>
         </div>

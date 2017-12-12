@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, state} from '@angular/core';
 import {ProductService} from '../shared/product.service';
 import {Product} from '../shared/product.model';
 import {Router} from '@angular/router';
@@ -114,6 +114,7 @@ export class ProductAdministrationComponent implements OnInit {
       .subscribe(products => {
         this.products = products;
       });
+    this.ingredientIdList = [];
   }
   backToLogin() {
     this.router.navigateByUrl('/login');
