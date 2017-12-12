@@ -14,7 +14,8 @@ import { ProductAdministrationComponent } from './product-administration/product
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ShoppingListComponent} from './shopping-list/shopping-list.component';
 import {IngredientService} from './ingredient/shared/ingredient.service';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbRadioGroup} from '@ng-bootstrap/ng-bootstrap';
+import {NgbButtonLabel} from '@ng-bootstrap/ng-bootstrap/buttons/label';
 
 
 const appRoutes: Routes = [
@@ -55,7 +56,7 @@ const appRoutes: Routes = [
     FormsModule,
     NgbModule.forRoot()
   ],
-  providers: [ProductService, IngredientService, FormBuilder],
+  providers: [ProductService, IngredientService, FormBuilder, NgbRadioGroup, NgbButtonLabel],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

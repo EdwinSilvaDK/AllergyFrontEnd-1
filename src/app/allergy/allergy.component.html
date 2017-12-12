@@ -18,37 +18,29 @@
   </div>
   <hr>
   <div class="row justify-content-md-center" align="center">
-    <h1 class="col col-lg-3"> Select Your <strong>Allergy</strong> </h1>
+    <h1 class="col col-lg-3"> Select Your <strong>Ingredients</strong> </h1>
   </div>
   <hr>
-  <div class="row justify-content-md-center">
-    <div class="col col-lg-2" align="center">
 
-      <button
-        (click)="productsById()"
-        href="#" class="list-group-item list-group-item-action list-group-item-dark">Gluten</button>
-    </div>
 
-    <div class="col col-lg-2" align="center">
-      <button href="#" class="list-group-item list-group-item-action list-group-item-warning">Lactose</button>
-    </div>
-    <div class="col col-lg-2" align="center">
-      <button href="#" class="list-group-item list-group-item-action list-group-item-primary">Nut Allergy</button>
-    </div>
+
+  <a *ngFor="let ingredient of ingredients" class="list-group-item">
+  <div class="list-group" (click)="addToExlusiveList(ingredient)">
+    {{ingredient.name}}
   </div>
+  </a>
+  <hr>
+  <h1> Selected Items that I am allergic to </h1>
+  <a *ngFor="let selectedingredient of selectedIngredients" class="list-group-item">
+      <div class="list-group">
+        {{selectedingredient.name}}
+      </div>
 
-  <div class="row justify-content-md-center"> <p> </p> </div>
-
-  <div class="row justify-content-md-center">
-    <div class="col col-lg-2" align="center">
-      <button href="#" class="list-group-item list-group-item-action list-group-item-danger">Soy</button>
-    </div>
-    <div class="col col-lg-2" align="center">
-      <button href="#" class="list-group-item list-group-item-action list-group-item-secondary">Eggs</button>
-    </div>
-    <div class="col col-lg-2" align="center">
-      <button href="#" class="list-group-item list-group-item-action list-group-item-success">Fish</button>
-    </div>
-  </div>
-
+  </a>
+  <button type="button">
+    Desired Products
+  </button>
+  <button (click)="clearFromExlusiveList()">
+    ClearAll
+  </button>
 </div>
