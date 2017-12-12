@@ -25,7 +25,7 @@
 
 
   <a *ngFor="let ingredient of ingredients" class="list-group-item">
-  <div class="list-group" (click)="addToExlusiveList(ingredient)">
+  <div class="list-group" (click)="addToExclusiveList(ingredient)">
     {{ingredient.name}}
   </div>
   </a>
@@ -40,7 +40,7 @@
   <button type="button">
     Desired Products
   </button>
-  <button (click)="clearFromExlusiveList()">
+  <button (click)="clearFromExclusiveList()">
     ClearAll
   </button>
 </div>

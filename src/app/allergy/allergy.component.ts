@@ -1,10 +1,8 @@
-import {Component, InjectableDecorator, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../shared/product.service';
 import {Router} from '@angular/router';
 import {IngredientService} from '../ingredient/shared/ingredient.service';
 import {Ingredient} from '../ingredient/shared/ingredient.model';
-import {forEach} from '@angular/router/src/utils/collection';
-import {log} from 'util';
 
 @Component({
   selector: 'app-product',
@@ -38,15 +36,15 @@ export class AllergyComponent implements OnInit {
   backToLogin() {
     this.router.navigateByUrl('/login');
   }
-  addToExlusiveList(ing: Ingredient) {
-    this.selectedIngredients.forEach(function (x) {
-      if (x.id === ing.id) {
+  addToExclusiveList(ing: Ingredient) {
+    for (let i = 0; i < this.selectedIngredients.length; i++) {
+      if (this.selectedIngredients[i] === ing) {
         this.selectedIngredients.push(ing);
       }
-    });
+    }
     this.selectedIngredients.push(ing);
   }
-  clearFromExlusiveList() {
+  clearFromExclusiveList() {
     this.selectedIngredients = [];
   }
 }
