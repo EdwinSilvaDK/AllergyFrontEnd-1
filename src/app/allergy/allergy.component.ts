@@ -3,6 +3,7 @@ import {ProductService} from '../shared/product.service';
 import {Router} from '@angular/router';
 import {IngredientService} from '../ingredient/shared/ingredient.service';
 import {Ingredient} from '../ingredient/shared/ingredient.model';
+import {Product} from '../shared/product.model';
 
 @Component({
   selector: 'app-product',
@@ -17,6 +18,7 @@ export class AllergyComponent implements OnInit {
   }
   ingredients: Ingredient[];
   selectedIngredients: Array<Ingredient> = [];
+  filteredProducts: Product[];
   ngOnInit() {
     this.ingredientService.getIngredients()
       .subscribe(
@@ -25,11 +27,14 @@ export class AllergyComponent implements OnInit {
         }
       );
   }
+  AddToSelectedIngredientsIds(ingId: number) {
+    this.productService.addToFilteredList(ingId);
+}
   productsById() {
       this.router.navigateByUrl('product-list');
   }
 
-    toShoppingList() {
+  toShoppingList() {
     this.router.navigateByUrl('/shopping-list');
   }
 
@@ -44,6 +49,7 @@ export class AllergyComponent implements OnInit {
     }
     this.selectedIngredients.push(ing);
   }
+
   clearFromExclusiveList() {
     this.selectedIngredients = [];
   }

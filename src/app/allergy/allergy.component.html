@@ -35,12 +35,21 @@
       <div class="list-group">
         {{selectedingredient.name}}
       </div>
-
+      <button (click)="AddToSelectedIngredientsIds(selectedingredient.id)">
+        AddToSelectedItems
+      </button>
   </a>
-  <button type="button">
+  <button (click)="productsById()">
     Desired Products
   </button>
   <button (click)="clearFromExclusiveList()">
     ClearAll
   </button>
+  <div>
+  <a *ngFor="let filteredProduct of filteredProducts" class="list-group.item">
+    <div class="list-group">
+      {{filteredProduct.name}}
+    </div>
+  </a>
+  </div>
 </div>

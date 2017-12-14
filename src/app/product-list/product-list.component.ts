@@ -15,16 +15,17 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService,
               private ingredientService: IngredientService,
               private router: Router) { }
+  selectedIngredientsIds: Array<number> = [];
   product: Product;
   products: Product[];
   ingredientList: Ingredient[];
+  filteredProducts: Product[];
   ngOnInit() {
-    this.productService.getProducts()
-      .subscribe(
-        products => {
-          this.products = products;
-        }
-      );
+    this.selectedIngredientsIds = this.productService.getfilteredList();
+    this.productService.createFilteredList(this.selectedIngredientsIds).subscribe(products => {
+      this.filteredProducts = products;
+      this.productService.DeletefilteredList();
+    });
     this.ingredientService.getIngredients()
       .subscribe(
         ingredients => {
