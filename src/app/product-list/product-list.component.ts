@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Product} from '../shared/product.model';
 import {Ingredient} from '../ingredient/shared/ingredient.model';
 import {IngredientService} from '../ingredient/shared/ingredient.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-product-list',
@@ -24,7 +25,6 @@ export class ProductListComponent implements OnInit {
     this.selectedIngredientsIds = this.productService.getfilteredList();
     this.productService.createFilteredList(this.selectedIngredientsIds).subscribe(products => {
       this.filteredProducts = products;
-      this.productService.DeletefilteredList();
     });
     this.ingredientService.getIngredients()
       .subscribe(
@@ -33,9 +33,14 @@ export class ProductListComponent implements OnInit {
         });
   }
   backToAllergies() {
+    this.filteredProducts = [];
+    this.selectedIngredientsIds = [];
+    this.productService.DeletefilteredList();
     this.router.navigateByUrl('/allergy');
   }
   toShoppingList() {
+    this.filteredProducts = [];
+    this.selectedIngredientsIds = [];
     this.router.navigateByUrl('/shopping-list');
   }
   addProduct(name: string) {

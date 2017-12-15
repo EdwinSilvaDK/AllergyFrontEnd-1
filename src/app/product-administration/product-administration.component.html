@@ -48,11 +48,23 @@
         <input  class="form-control col-md-6" formControlName="type">
 
       </label>
-      <div align="right">
-      <button type="button" class="btn btn-danger btn-md" (click)="delete(product.id, $event)">
-        <i class="fa fa-eraser" aria-hidden="true"></i>
-        Delete
-      </button>
+
+      <div class="card-footer bg-transparent">
+        <div class="pull-right" *ngIf="!confirmDelete">
+          <button class="btn btn-danger" (click)="delete()">
+            <i class="fa fa-eraser" aria-hidden="true"></i> Delete
+          </button>
+        </div>
+        <div class="pull-right" *ngIf="confirmDelete">
+          <button class="btn btn-outline-danger" (click)="DeleteConfirm(product.id, $event)">
+            <i class="fa fa-trash-o" aria-hidden="true"></i> Sure?
+          </button>
+          <button class="btn btn-outline-info" (click)="abortDelete()">
+            <i class="fa fa-times" aria-hidden="true"></i> Cancel
+          </button>
+        </div>
+      </div>
+
         <button type="submit" class="row list-group-item list-group-item-info"> Edit </button>
         <div class="col text-right">
           <div ngbDropdown placement="top-right" class="d-inline-block">
@@ -67,7 +79,7 @@
             </div>
           </div>
         </div>
-      </div>
+
 
 
     </div>

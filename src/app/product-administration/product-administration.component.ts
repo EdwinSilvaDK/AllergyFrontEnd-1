@@ -21,6 +21,7 @@ export class ProductAdministrationComponent implements OnInit {
   products: Product[];
   ingredients: Ingredient[];
   ingredientIdList: Array<number> = [];
+  confirmDelete= false;
   constructor(private productService: ProductService,
               private ingredientService: IngredientService,
               private router: Router,
@@ -49,7 +50,7 @@ export class ProductAdministrationComponent implements OnInit {
         }
       );
   }
-  delete(id: number, $event) {
+  DeleteConfirm(id: number, $event) {
     console.log('product');
     this.productService.deleteProductById(
       id).switchMap(productDeleted => this.productService.getProducts())
@@ -59,6 +60,13 @@ export class ProductAdministrationComponent implements OnInit {
         }, error2 => {}
       );
     $event.stopPropagation();
+  }
+  delete() {
+    this.confirmDelete = true;
+  }
+
+  abortDelete() {
+    this.confirmDelete = false;
   }
 
   addProduct() {

@@ -42,6 +42,7 @@ export class ProductService {
      .put<Product>(url + '/' + id, product);
   }
   addToFilteredList(id: number) {
+    localStorage.removeItem('filteredListIds');
     this.filteredListIds.push(id);
     localStorage.setItem('filteredListIds', JSON.stringify(this.filteredListIds));
   }
@@ -57,6 +58,7 @@ export class ProductService {
     return JSON.parse(localStorage.getItem('shoppingList'));
 }
   DeletefilteredList() {
+    localStorage.clear();
     localStorage.removeItem('filteredListIds');
   }
   DeleteShoppingList() {
