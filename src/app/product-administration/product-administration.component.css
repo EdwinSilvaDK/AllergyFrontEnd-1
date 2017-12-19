@@ -9,7 +9,10 @@
   margin-left: 16px;
 }
 .row:hover {
-  color: crimson;
+  color: white;
+}
+.row1:hover {
+  color: white;
 }
 .show > .dropdown-menu {
   display: block;

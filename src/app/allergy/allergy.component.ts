@@ -18,7 +18,9 @@ export class AllergyComponent implements OnInit {
   }
   ingredients: Ingredient[];
   selectedIngredients: Array<Ingredient> = [];
-  filteredProducts: Product[];
+  confirmClear= false;
+  confirmAdd= false;
+  addingToSelectedItems= false;
   ngOnInit() {
     this.ingredientService.getIngredients()
       .subscribe(
@@ -29,7 +31,18 @@ export class AllergyComponent implements OnInit {
   }
   AddToSelectedIngredientsIds(ingId: number) {
     this.productService.addToFilteredList(ingId);
+    this.addingToSelectedItems = true;
+    setTimeout(() => {
+      this.addingToSelectedItems = false;
+    }, 2500);
 }
+  add() {
+    this.confirmAdd = true;
+  }
+
+  abortAdd() {
+    this.confirmAdd = false;
+  }
   productsById() {
       this.router.navigateByUrl('product-list');
   }
@@ -52,5 +65,16 @@ export class AllergyComponent implements OnInit {
 
   clearFromExclusiveList() {
     this.selectedIngredients = [];
+    this.confirmClear = false;
+  }
+  clear() {
+    this.confirmClear = true;
+  }
+
+  abortClear() {
+    this.confirmClear = false;
+  }
+  closeAlert() {
+    this.addingToSelectedItems = false;
   }
 }

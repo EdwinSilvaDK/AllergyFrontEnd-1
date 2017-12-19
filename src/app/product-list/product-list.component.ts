@@ -4,7 +4,6 @@ import {Router} from '@angular/router';
 import {Product} from '../shared/product.model';
 import {Ingredient} from '../ingredient/shared/ingredient.model';
 import {IngredientService} from '../ingredient/shared/ingredient.service';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-product-list',
@@ -17,8 +16,6 @@ export class ProductListComponent implements OnInit {
               private ingredientService: IngredientService,
               private router: Router) { }
   selectedIngredientsIds: Array<number> = [];
-  product: Product;
-  products: Product[];
   ingredientList: Ingredient[];
   filteredProducts: Product[];
   ngOnInit() {

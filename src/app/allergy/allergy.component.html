@@ -26,7 +26,7 @@
 
   <a *ngFor="let ingredient of ingredients" class="list-group-item">
   <div class="list-group" (click)="addToExclusiveList(ingredient)">
-    {{ingredient.name}}
+     {{ingredient.name}}
   </div>
   </a>
   <hr>
@@ -35,16 +35,57 @@
       <div class="list-group">
         {{selectedingredient.name}}
       </div>
-      <button (click)="AddToSelectedIngredientsIds(selectedingredient.id)">
-        AddToSelectedItems
-      </button>
+
+        <div>
+          <div class="pull-right" *ngIf="!confirmAdd">
+            <button class="btn btn-danger" (click)="add()">
+              <i class="fa fa-eraser" aria-hidden="true"></i> Add To Selected Items
+            </button>
+          </div>
+
+          <div class="col-lg-8" align="center">
+            <ngb-alert type="success" *ngIf="addingToSelectedItems" (close)="closeAlert()">Successfully added to <strong>selected items!</strong></ngb-alert>
+          </div>
+
+          <div class="pull-right" *ngIf="confirmAdd">
+            <button class="btn btn-outline-danger" (click)="AddToSelectedIngredientsIds(selectedingredient.id)">
+              <i class="fa fa-trash-o" aria-hidden="true"></i> Sure?
+            </button>
+            <button class="btn btn-outline-info" (click)="abortAdd()">
+              <i class="fa fa-times" aria-hidden="true"></i> Cancel
+            </button>
+          </div>
+        </div>
+
+
   </a>
-  <button (click)="productsById()">
-    Desired Products
-  </button>
-  <button (click)="clearFromExclusiveList()">
-    ClearAll
-  </button>
+  <br>
+  <br>
+
+  <div class="bg-transparent">
+
+    <div class="pull-left">
+
+    <button (click)="productsById()" class="btn btn-danger">
+      Desired Products
+    </button>
+    </div>
+
+    <div class="pull-right" *ngIf="!confirmClear">
+      <button class="btn btn-danger" (click)="clear()">
+        <i class="fa fa-eraser" aria-hidden="true"></i> Clear All
+      </button>
+
+    </div>
+    <div class="pull-right" *ngIf="confirmClear">
+      <button class="btn btn-outline-danger" (click)="clearFromExclusiveList()">
+        <i class="fa fa-trash-o" aria-hidden="true"></i> Sure?
+      </button>
+      <button class="btn btn-outline-info" (click)="abortClear()">
+        <i class="fa fa-times" aria-hidden="true"></i> Cancel
+      </button>
+    </div>
+  </div>
   <div>
   <a *ngFor="let filteredProduct of filteredProducts" class="list-group.item">
     <div class="list-group">
@@ -53,3 +94,6 @@
   </a>
   </div>
 </div>
+<br>
+<br>
+<br>

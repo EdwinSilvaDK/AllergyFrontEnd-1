@@ -22,62 +22,101 @@
       <i class="fa fa-plus" aria-hidden="true"></i>
       Create
     </button>
+
+    <div class="col-md-4">
+    <ngb-alert type="success" *ngIf="productCreated" (close)="closeAlert()" >Product was created successfully!</ngb-alert>
+    </div>
+
   </div>
 </form>
-<div>
+<div class="container" align="left">
   <form (ngSubmit)="addToIngredients()" [formGroup]="ingredientGroup" novalidate >
     <label class="center-block col-md-6">Ingredient:
       <input class="form-control col-md-6" formControlName="name">
     </label>
-  <button type="submit">
-    Add Ingredient
+  <button type="submit" class="row list-group-item list-group-item-success">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    Add Ingredients
   </button>
   </form>
+
+  <div class="col-md-4">
+    <ngb-alert type="success" *ngIf="ingredientAddedToList" (close)="closeAlert()" >Ingredient was added to the <strong>list</strong>!</ngb-alert>
+  </div>
+
 </div>
-  <hr>
+
   <a
     *ngFor="let product of products" class="row list-group-item list-group-item-action">
     <form (ngSubmit)="editSpecificProduct(product.id)" [formGroup]="productGroup" novalidate >
     <h5>Product: {{product.name}} <h5> Type: {{product.type}} </h5> </h5>
-    <div align="right">
+
+      <hr>
+
+      <div align="pull-right">
       <label class="center-block col-md-6">Product:
         <input class="form-control col-md-6" formControlName="name">
       </label>
 
       <label class="center-block col-md-6">Type:
         <input  class="form-control col-md-6" formControlName="type">
-
       </label>
 
-      <div class="card-footer bg-transparent">
-        <div class="pull-right" *ngIf="!confirmDelete">
-          <button class="btn btn-danger" (click)="delete()">
-            <i class="fa fa-eraser" aria-hidden="true"></i> Delete
-          </button>
-        </div>
-        <div class="pull-right" *ngIf="confirmDelete">
-          <button class="btn btn-outline-danger" (click)="DeleteConfirm(product.id, $event)">
-            <i class="fa fa-trash-o" aria-hidden="true"></i> Sure?
-          </button>
-          <button class="btn btn-outline-info" (click)="abortDelete()">
-            <i class="fa fa-times" aria-hidden="true"></i> Cancel
-          </button>
-        </div>
-      </div>
+        <hr>
 
-        <button type="submit" class="row list-group-item list-group-item-info"> Edit </button>
-        <div class="col text-right">
+        <div class="col">
+          <div class="pull-left" *ngIf="!confirmDelete">
+            <button type="button" class="btn btn-danger" (click)="delete(product)">
+              <i class="fa fa-eraser" aria-hidden="true"></i> Delete
+            </button>
+          </div>
+          <div class="pull-left" *ngIf="confirmDelete && productToDelete.id == product.id">
+            <button type="button" class="btn btn-outline-danger" (click)="DeleteConfirm(product.id, $event)">
+              <i class="fa fa-trash-o" aria-hidden="true"></i> Sure?
+            </button>
+            <button type="button" class="btn btn-outline-info" (click)="abortDelete()">
+              <i class="fa fa-times" aria-hidden="true"></i> Cancel
+            </button>
+          </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="col">
+          <div align="pull-right" *ngIf="!confirmEdit">
+            <button type="button" class="btn btn-danger" (click)="edit(product)">
+              <i class="fa fa-eraser" aria-hidden="true"></i> Edit
+            </button>
+          </div>
+          <div align="pull-left" *ngIf="confirmEdit && productToEdit.id == product.id">
+            <button type="submit" class="btn btn-outline-danger">
+              <i class="fa fa-trash-o" aria-hidden="true"></i> Sure?
+            </button>
+            <button type="button" class="btn btn-outline-info" (click)="abortEdit()">
+              <i class="fa fa-times" aria-hidden="true"></i> Cancel
+            </button>
+          </div>
+        </div>
+
+
+
+        <div class="col text-center">
           <div ngbDropdown placement="top-right" class="d-inline-block">
             <button type="button" class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>Ingredients to add</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
               <a *ngFor="let ingredient of ingredients">
                 <h5>
-                  <hr>
+
+
                   <button (click)="addIngredientToProduct(product.name, product.type, product.id, ingredient.id)" type="button" class="dropdown-item">{{ingredient.name}}</button>
                 </h5>
               </a>
             </div>
+
           </div>
+
+
         </div>
 
 

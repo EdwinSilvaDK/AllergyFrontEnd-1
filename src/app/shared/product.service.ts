@@ -4,8 +4,6 @@ import {environment} from '../../environments/environment';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/switchMap';
-import {Ingredient} from '../ingredient/shared/ingredient.model';
-import {post} from 'selenium-webdriver/http';
 
 
 const url = environment.apiEndpoint + '/product';
@@ -42,6 +40,7 @@ export class ProductService {
      .put<Product>(url + '/' + id, product);
   }
   addToFilteredList(id: number) {
+    this.filteredListIds = [];
     localStorage.removeItem('filteredListIds');
     this.filteredListIds.push(id);
     localStorage.setItem('filteredListIds', JSON.stringify(this.filteredListIds));

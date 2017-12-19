@@ -22,6 +22,11 @@ export class ProductAdministrationComponent implements OnInit {
   ingredients: Ingredient[];
   ingredientIdList: Array<number> = [];
   confirmDelete= false;
+  confirmEdit= false;
+  productToDelete: Product;
+  productToEdit: Product;
+  productCreated= false;
+  ingredientAddedToList= false;
   constructor(private productService: ProductService,
               private ingredientService: IngredientService,
               private router: Router,
@@ -57,16 +62,19 @@ export class ProductAdministrationComponent implements OnInit {
       .subscribe(
         products => {
           this.products = products;
+          this.confirmDelete = false;
         }, error2 => {}
       );
     $event.stopPropagation();
   }
-  delete() {
+  delete(product: Product) {
+    this.productToDelete = product;
     this.confirmDelete = true;
   }
 
   abortDelete() {
     this.confirmDelete = false;
+    this.productToDelete = null;
   }
 
   addProduct() {
@@ -79,6 +87,10 @@ export class ProductAdministrationComponent implements OnInit {
       .subscribe(returnproduct => {
         this.products.push(returnproduct);
         this.productGroup.reset();
+        this.productCreated = true;
+        setTimeout(() => {
+          this.productCreated = false;
+        }, 2500);
       });
   }
   addToIngredients() {
@@ -90,6 +102,10 @@ export class ProductAdministrationComponent implements OnInit {
       .subscribe(returnIngredient => {
         this.ingredients.push(returnIngredient);
         this.ingredientGroup.reset();
+        this.ingredientAddedToList = true;
+        setTimeout(() => {
+          this.ingredientAddedToList = false;
+        }, 2500);
       });
   }
   editSpecificProduct(id: number) {
@@ -104,9 +120,18 @@ export class ProductAdministrationComponent implements OnInit {
       .subscribe(
         products => {
           this.products = products;
+          this.confirmEdit = false;
           this.productGroup.reset();
         }, error2 => {}
       );
+  }
+  edit(product: Product) {
+    this.productToEdit = product;
+    this.confirmEdit = true;
+  }
+  abortEdit() {
+    this.productToEdit = null;
+    this.confirmEdit = false;
   }
 
   addIngredientToProduct(name: string, type: string, id: number, idIng: number) {
@@ -126,6 +151,9 @@ export class ProductAdministrationComponent implements OnInit {
   }
   backToLogin() {
     this.router.navigateByUrl('/login');
+  }
+  closeAlert() {
+    this.productCreated = false;
   }
 
 }
